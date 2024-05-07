@@ -1,0 +1,116 @@
+﻿@model MovieStoreMvc.Models.Domain.Movie
+@{
+    ViewData["Title"] = "Add";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+
+    <style>
+
+        form {
+            border: 3px solid #f1f1f1;
+            width: 60%;
+            margin: auto;
+            margin-top: -1%;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #aa048b;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 20%;
+        }
+
+
+        .container {
+            padding: 16px;
+        }
+
+        .msg {
+            padding: 0px;
+        }
+
+
+        .err {
+            color: red;
+        }
+    </style>
+
+</head>
+<form asp-action="Add" method="post" enctype="multipart/form-data">
+    <h2>Add Movie</h2>
+    <br />
+    <br />
+
+
+    <div class="input-container">
+
+        <label asp-for="Title">Movie Tital</label>
+        <input type="text" asp-for="Title" placeholder="Enter Movie Tital">
+        <div class="msg">
+            <span class="err" asp-validation-for="Title"> </span>
+        </div>
+
+        <label asp-for="ImageFile">Image</label>
+        <input type="file" asp-for="ImageFile"> 
+        <div class="msg">
+            <span class="err" asp-validation-for="ImageFile"> </span>
+        </div>
+
+      
+
+
+            <label asp-for="Genres">Genre</label>
+            <select asp-items="Model.GenreList" class="input" asp-for="Genres" multiple>
+                <option value="">--Select--</option>
+                </select>
+            <div class="msg">
+                <span class="err" asp-validation-for="Genres"> </span>
+            </div>
+
+        <label asp-for="ReleaseYear">Released Year</label>
+        <input type="text" asp-for="ReleaseYear" placeholder="Release Year">
+        <div class="msg">
+            <span class="err" asp-validation-for="ReleaseYear"> </span>
+        </div>
+
+        <label asp-for="Cast">Cast Name</label>
+        <input type="text" asp-for="Cast" placeholder="Cast Name">
+        <div class="msg">
+            <span class="err" asp-validation-for="Cast"> </span>
+        </div>
+
+        <label asp-for="Director">Director Name</label>
+        <input type="text" asp-for="Director" placeholder="Director Name">
+        <div class="msg">
+            <span class="err" asp-validation-for="Director"> </span>
+        </div>
+        @if (TempData["msg"] != null)
+        {
+            <div class="msg">
+                <span class="err">@TempData["msg"] </span>
+            </div>
+        }
+
+        <button type="submit">Add </button>
+
+        <a class="btn btn-sec" href="/Movie/MovieList">All Records</a>
+
+    </div>
+</form>
+
